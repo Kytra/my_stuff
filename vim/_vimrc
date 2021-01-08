@@ -19,6 +19,7 @@ set autochdir
 set autoindent
 set tabstop=4
 set shiftwidth=4
+set backspace=2
 "set expandtab
 "set softtabstop=4
 
@@ -99,6 +100,8 @@ call plug#begin('$HOME\vimfiles\plugged')
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
+	Plug 'machakann/vim-sandwich'
+	Plug 'gcmt/wildfire.vim'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
@@ -106,3 +109,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 noremap <F5> :NERDTreeToggle<CR>
+
+"Coc settings
+set hidden
+set shortmess+=c
