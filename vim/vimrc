@@ -1,4 +1,11 @@
 let mapleader=" "
+let g:plugDirctory="~/.vim/plugged"
+
+let g:isWindows=0
+if(has("win32") || has("win64") || has("win95") || has("win16"))
+	let g:isWindows=1
+	let g:plugDirctory="$HOME\vimfiles\plugged"
+endif
 
 syntax on
 
@@ -19,6 +26,7 @@ set autochdir
 set autoindent
 set tabstop=4
 set shiftwidth=4
+set backspace=2
 "set expandtab
 "set softtabstop=4
 
@@ -62,17 +70,43 @@ noremap = nzz
 noremap - Nzz
 noremap <LEADER><CR> :nohlsearch<CR>
 
+if(g:isWindows)
+	colorscheme Tomorrow-Night
+
+	source $VIMRUNTIME/delmenu.vim
+	source $VIMRUNTIME/menu.vim
+
+	set fileencodings=utf-8,gbk2312,gbk,gb18030,cp936
+	set encoding=utf-8
+	set langmenu=zh_CN
+	let $LANG = 'en_US.UTF-8'
+
+	set guioptions-=T
+	set guioptions-=m
+	set guioptions-=L
+	set guioptions-=r
+	set guioptions-=b
+	set guioptions-=e
+
+	set guifont=Inconsolata:h16:cANSI
+
+	set clipboard+=unnamed
+	set winaltkeys=no
+endif
+
 "-----Install Vim-plug
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"
+
 "-----Install nodejs for coc.nvim
 "curl -sL install-node.now.sh/lts | bash
 
-call plug#begin('~/.vim/plugged')
+call plug#begin(g:plugDirctory)
 	Plug 'scrooloose/nerdtree',{'on':'NERDTreeToggle'}
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
+	Plug 'machakann/vim-sandwich'
+	Plug 'gcmt/wildfire.vim'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
@@ -80,3 +114,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 noremap <F5> :NERDTreeToggle<CR>
+
+"Coc settings
+set hidden
+set shortmess+=c
