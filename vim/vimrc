@@ -1,10 +1,10 @@
 let mapleader=" "
-let g:plugDirctory="~/.vim/plugged"
+let g:plugDirctory='~/.vim/plugged'
 
 let g:isWindows=0
 if(has("win32") || has("win64") || has("win95") || has("win16"))
 	let g:isWindows=1
-	let g:plugDirctory="$HOME\vimfiles\plugged"
+	let g:plugDirctory='$HOME\vimfiles\plugged'
 endif
 
 syntax on
