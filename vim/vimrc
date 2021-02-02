@@ -4,7 +4,7 @@ let g:plugDirctory='~/.vim/plugged'
 let g:isWindows=0
 if(has("win32") || has("win64") || has("win95") || has("win16"))
 	let g:isWindows=1
-	let g:plugDirctory='$HOME\vimfiles\plugged'
+	let g:plugDirctory='$HOMEPATH\vimfiles\plugged'
 endif
 
 syntax on
@@ -118,3 +118,17 @@ noremap <F5> :NERDTreeToggle<CR>
 "Coc settings
 set hidden
 set shortmess+=c
+
+let g:coc_global_extensions = ['coc-vimlsp','coc-clangd']
+
+inoremap <silent><expr> <TAB>
+	\ pumvisible() ? "\<C-n>" :
+	\ <SID>check_back_space() ? "\<TAB>" :
+	\ coc#refresh()
+
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1] =~# '\s'
+endfunction
